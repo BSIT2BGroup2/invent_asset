@@ -90,7 +90,7 @@
                               <div class='modal-footer justify-content-between'>
                                   <a type='button' href='index.php?page=find_asset' class='btn btn-default' data-dismiss='modal'>Cancel</a>
                                   <form action='' method='post'>
-                                      <input type='text' name='asset_id' value='{$asset_barcode}'>
+                                      <input type='text' name='asset_id' value='{$asset_barcode}' hidden>
                                       <button type='submit' name='count' value='count'  class='btn btn-success' title='Add File'>Count</button>
                                   </form>
                               </div>
