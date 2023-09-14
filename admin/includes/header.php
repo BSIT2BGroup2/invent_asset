@@ -2,13 +2,17 @@
 session_start();
  include "database/db.php"; 
  include "classes/function.php";
+ include "classes/users.php";
  
 $user_id = $_SESSION['user_id'];
-$user_firstname = $_SESSION['user_firstname'];
-$user_lastname = $_SESSION['user_lastname'];
-$user_role = $_SESSION['user_role'];
-$user_email = $_SESSION['user_email'];
-$username = $_SESSION['username'];
+$profile = $con->query("SELECT * FROM users WHERE user_id = '$user_id'");
+while($row = $profile->fetch_array()){
+  $user_firstname = $row['user_firstname'];
+  $user_lastname = $row['user_lastname'];
+  $user_email = $row['user_email'];
+  $user_role = $row['user_role'];
+  $username = $row['username'];
+}
  
  
  ?>

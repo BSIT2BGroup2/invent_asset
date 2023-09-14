@@ -68,7 +68,7 @@
     function scanned_asset($asset_barcode){
         global $con;
 
-        $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '*$asset_barcode*'");
+        $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_barcode'");
         if($asset_query->num_rows > 0 ){
             while($row = $asset_query->fetch_array()){;
                 $asset_id = $row['main_id'];
