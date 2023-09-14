@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner</title>
+</head>
+<body>
+    <form action="" method="post" onsubmit="disableInput()">
+        <label for="data">Data:</label>
+        <input type="text" id="data" name="data" autofocus>
+        <input type="submit" value="Submit">
+      </form>
+      
+      <script>
+      function disableInput() {
+        var inputElement = document.getElementById("data");
+        inputElement.setAttribute("readonly", "readonly");
+        return true; // Allow the form submission to proceed
+      }
+      </script>
+</body>
+</html>
