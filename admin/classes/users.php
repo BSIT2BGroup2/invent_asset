@@ -9,9 +9,13 @@
     function edit_profile($user_id, $firstname, $lastname, $email){
         global $con;
 
-        $edit_profile = $con->query("UPDATE users SET user_firstname = '$firstname', user_lastname = '$lastname', user_email = '$email' WHERE user_id = '$user_id'");
+        $stmt = $con->prepare("UPDATE users SET user_firstname = ?, user_lastname = ?, user_email = ? WHERE user_id = ?");
+        $stmt->bind_param('sssi', $firstname, $lastname, $email, $user_id);
+        $stmt->execute();
+        $stmt->close();
+        #$edit_profile = $con->query("UPDATE users SET user_firstname = '$firstname', user_lastname = '$lastname', user_email = '$email' WHERE user_id = '$user_id'");
 
-        failed_query($edit_profile);
+        failed_query($stmt);
         header("Location: index.php?page=user_profile");
     }
 
@@ -29,8 +33,12 @@
             echo "Not same password";
             header("Location: index.php?page=user_profile");
         }else{
-            $update_pass = $con->query("UPDATE users SET user_password = '$new_pass' WHERE user_id = '$user_id'");
-            failed_query($update_pass);
+            $stmt = $con->prepare("UPDATE users SET user_password = '$new_pass' WHERE user_id = '$user_id'");
+            $stmt->bind_param('si', $new_pass, $user_id);
+            $stmt->execute();
+            $stmt->close();
+            #$update_pass = $con->query("UPDATE users SET user_password = '$new_pass' WHERE user_id = '$user_id'");
+            failed_query($stmt);
             header("Location: index.php?page=user_profile");
         }
     }
