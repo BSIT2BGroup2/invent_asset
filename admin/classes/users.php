@@ -22,12 +22,16 @@
 
         if($pass['user_password'] != $password){
             // If Old Password is not eqaul to the input Old Password
+            echo "old password";
             header("Location: index.php?page=user_profile");
         }else if($new_pass != $confirm_pass){
             // If New Password is not eqaul to the Confirm Password
+            echo "Not same password";
             header("Location: index.php?page=user_profile");
         }else{
-            $update_pass = $con->query("UPDATE users SET user_password = '$new_pass' WWHERE user_id = '$user_id'");
+            $update_pass = $con->query("UPDATE users SET user_password = '$new_pass' WHERE user_id = '$user_id'");
+            failed_query($update_pass);
+            header("Location: index.php?page=user_profile");
         }
     }
 

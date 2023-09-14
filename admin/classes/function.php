@@ -73,42 +73,40 @@
             while($row = $asset_query->fetch_array()){;
                 $asset_id = $row['main_id'];
             }
+            echo"
+            <!-- Add Folder Modal -->
+            <div class='modal fade show' id='barcodeInput' style='padding-right: 17px; display: block;' aria-modal='true' role='dialog'>
+                      <div class='modal-dialog'>
+                      <div class='modal-content'>
+                              <div class='modal-header bg-danger'>
+                                  <h4 class='modal-title'>Count Asset</h4>
+                                  <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                      <span aria-hidden='true'>&times;</span>
+                                  </button>
+                              </div>
+                              <div class='modal-body'>
+                                <p class='h4'>Are you sure to count the Asset ID ({$asset_id})</p>
+                              </div>
+                              <div class='modal-footer justify-content-between'>
+                                  <a type='button' href='index.php?page=find_asset' class='btn btn-default' data-dismiss='modal'>Cancel</a>
+                                  <form action='' method='post'>
+                                      <input type='text' name='asset_id' value='{$asset_barcode}'>
+                                      <button type='submit' name='count' value='count'  class='btn btn-success' title='Add File'>Count</button>
+                                  </form>
+                              </div>
+                      </div>
+                      <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                  </div>
+                  <!-- /.modal -->";
         }
-        echo"
-            
-            
-        <!-- Add Folder Modal -->
-        <div class='modal fade show' id='barcodeInput' style='padding-right: 17px; display: block;' aria-modal='true' role='dialog'>
-                  <div class='modal-dialog'>
-                  <div class='modal-content'>
-                          <div class='modal-header bg-danger'>
-                              <h4 class='modal-title'>Count Asset</h4>
-                              <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                  <span aria-hidden='true'>&times;</span>
-                              </button>
-                          </div>
-                          <div class='modal-body'>
-                            <p class='h4'>Are you sure to count the Asset ID ({$asset_id})</p>
-                          </div>
-                          <div class='modal-footer justify-content-between'>
-                              <a type='button' href='index.php?page=find_asset' class='btn btn-default' data-dismiss='modal'>Cancel</a>
-                              <form action='' method='post'>
-                                  <input type='text' name='asset_id' value='{$asset_barcode}' hidden>
-                                  <button type='submit' name='count' value='count'  class='btn btn-success' title='Add File'>Count</button>
-                              </form>
-                          </div>
-                  </div>
-                  <!-- /.modal-content -->
-                  </div>
-                  <!-- /.modal-dialog -->
-              </div>
-              <!-- /.modal -->";
     }
 
     function count_asset($asset_barcode){
         global $con;
         
-        $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '*$asset_barcode*'");
+        $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_barcode'");
         if($asset_query->num_rows > 0 ){
             while($row = $asset_query->fetch_array()){
                 $asset_id = $row['asset_id'];
