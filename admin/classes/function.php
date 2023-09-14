@@ -100,6 +100,8 @@
                       <!-- /.modal-dialog -->
                   </div>
                   <!-- /.modal -->";
+        }else{
+            header("Location: index.php?page=find_asset");
         }
     }
 
