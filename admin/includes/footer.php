@@ -81,24 +81,6 @@
       "autoWidth": true,
       "responsive": true,
     });
-    $('#example4').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
-    });
-    $('#example5').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
-    });
   });
   
 
@@ -121,4 +103,41 @@ $(function() {
 
   
 })
+<?php 
+  if(!empty($_SESSION['toast'])){
+    $toast = $_SESSION['toast'];
+    switch($toast){
+      case'restore_asset':
+        echo"
+        $(document).ready(function(){
+          toastr.success('The Asset/s is Succesfully Restored')
+        });";
+        break;
+      case'disposed_asset':
+        echo"
+        $(document).ready(function(){
+          toastr.success('The Asset/s is Been Move to Asset Disposal')
+        });";
+        break;
+      case'count_asset':
+        echo"
+        $(document).ready(function(){
+          toastr.success('The Assets is been Count')
+        });";
+        break;
+      case'save_asset':
+        echo"
+        $(document).ready(function(){
+          toastr.success('The Asset/s Count is been Saved')
+        });";
+        break;
+      case'delete_asset':
+        echo"
+        $(document).ready(function(){
+          toastr.success('The Asset/s is been Deleted Forever')
+        });";
+        break;
+    }
+  }unset($_SESSION['toast']);
+?>
 </script>

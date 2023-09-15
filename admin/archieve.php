@@ -27,10 +27,16 @@
                                 <table id="example3" class="table table-bordered table-hover ">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
-                                                <button type="submit" name="restoreAsset" id="deleteBTN" value="borrow" class="btn btn-primary" disabled><i class="nav-icon fas fa-restore"></i> Restore</button>
+                                        <select name="select_type" id="" class="form-control" required>
+                                            <option value="" selected hidden>Select Option</option>
+                                            <option value="restore">Restore</option>
+                                            <option value="delete">Delete</option>
+                                        </select>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div id="search-results"></div>
+                                        <div id="search-results">
+                                            <button type="submit" name="restoreAsset" id="deleteBTN" value="borrow" class="btn btn-primary" disabled><i class="nav-icon fas fa-restore"></i> Apply</button>
+                                        </div>
                                     </div>
                                     <div class="col-sm-4">
                                     </div>
@@ -87,9 +93,10 @@
 <?php 
 
     if(isset($_POST['restoreAsset'])){
+        $select_type = $_POST['select_type'];
         $archieve_id = $_POST['archieve_id'];
 
-        restore_asset($archieve_id);
+        restore_asset($archieve_id, $select_type);
     }
 
 

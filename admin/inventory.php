@@ -40,7 +40,7 @@
                                 <table id="example3" class="table table-bordered table-hover ">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
-                                        <select name="select_type" id="" class="form-control">
+                                        <select name="select_type" id="" class="form-control" required>
                                             <option value="" selected hidden>Select Option</option>
                                             <option value="Not Counted">Not Counted</option>
                                             <option value="Counted">Counted</option>
@@ -115,7 +115,7 @@
     if(isset($_POST['deleteAsset'])){
         $select_type = $_POST['select_type'];
         $asset_id = $_POST['asset_id'];
-        delete_asset($asset_id, $select_type);
+        disposed_asset($asset_id, $select_type);
     }
 
 

@@ -1,5 +1,5 @@
 <?php 
-    function delete_asset($asset_id, $select_type){
+    function disposed_asset($asset_id, $select_type){
         global $con;
         if($select_type != 'Archive'){
             foreach ($asset_id as $key => $value) {
@@ -46,44 +46,64 @@
                 if(!$stmt){
                     die('QUERY FAILED' . mysqli_error($con));
                 }
+                $_SESSION['toast'] = 'disposed_asset';
                 header('Location: index.php?page=archieve');
             }
         }
         
     }
 
-    function restore_asset($archieve_id){
+    function restore_asset($archieve_id, $select_type){
         global $con;
-        
-        foreach($archieve_id as $id => $value){
-            $archive_query = $con->query("SELECT * FROM asset_archive WHERE archieve_id = '$value'");
-            $row = $archive_query->fetch_array();
-                $main_id = $row['main_id'];
-                $asset_barcode = $row['asset_barcode'];
-                $asset_index = $row['asset_index'];
-                $asset_department = $row['asset_department'];
-                $asset_quantity = $row['asset_quantity'];
-                $asset_description = $row['asset_description'];
-                $asset_acquired_date = $row['asset_acquired_date'];
-                $asset_remarks = $row['asset_remarks'];
-                $asset_count = $row['asset_count'];
+        if($select_type == 'restore'){
+            foreach($archieve_id as $id => $value){
+                $archive_query = $con->query("SELECT * FROM asset_archive WHERE archieve_id = '$value'");
+                $row = $archive_query->fetch_array();
+                    $main_id = $row['main_id'];
+                    $asset_barcode = $row['asset_barcode'];
+                    $asset_index = $row['asset_index'];
+                    $asset_department = $row['asset_department'];
+                    $asset_quantity = $row['asset_quantity'];
+                    $asset_description = $row['asset_description'];
+                    $asset_acquired_date = $row['asset_acquired_date'];
+                    $asset_remarks = $row['asset_remarks'];
+                    $asset_count = $row['asset_count'];
 
-                $stmt = $con->prepare("INSERT INTO assets (main_id, asset_barcode,asset_index,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
-                                        VALUES (?,?,?,?,?,?,?,?,?)");
-                $stmt->bind_param('isisisssi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_remarks, $asset_count);
-                $stmt->execute();
-                $stmt = $con->prepare("DELETE FROM asset_archive WHERE archieve_id = ?");
-                $stmt->bind_param('i', $value);
-                $stmt->execute();
-                $stmt->close();
-            #$asset_query = $con->query("INSERT INTO assets (asset_barcode, asset_index, asset_department, asset_quantity, asset_description, asset_acquired_date, asset_remarks, asset_count)
-            #                        VALUES ('$asset_barcode', '$asset_index', '$asset_department', '$asset_quantity', '$asset_description', '$asset_acquired_date', '$asset_remarks', '$asset_count')");
-            #$delete_query = $con->query("DELETE FROM asset_archive WHERE archieve_id = '$value'");
+                    $stmt = $con->prepare("INSERT INTO assets (main_id, asset_barcode,asset_index,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
+                                            VALUES (?,?,?,?,?,?,?,?,?)");
+                    $stmt->bind_param('isisisssi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_remarks, $asset_count);
+                    $stmt->execute();
+                    $stmt = $con->prepare("DELETE FROM asset_archive WHERE archieve_id = ?");
+                    $stmt->bind_param('i', $value);
+                    $stmt->execute();
+                    $stmt->close();
+                #$asset_query = $con->query("INSERT INTO assets (asset_barcode, asset_index, asset_department, asset_quantity, asset_description, asset_acquired_date, asset_remarks, asset_count)
+                #                        VALUES ('$asset_barcode', '$asset_index', '$asset_department', '$asset_quantity', '$asset_description', '$asset_acquired_date', '$asset_remarks', '$asset_count')");
+                #$delete_query = $con->query("DELETE FROM asset_archive WHERE archieve_id = '$value'");
 
-            if(!$stmt){
-                die('QUERY FAILED' . mysqli_error($con));
+                if(!$stmt){
+                    die('QUERY FAILED' . mysqli_error($con));
+                }
+                $_SESSION['toast'] = 'restore_asset';
+                header('Location: index.php?page=inventory');
             }
-            header('Location: index.php?page=inventory');
+        }elseif($select_type == 'delete'){
+            foreach($archieve_id as $id => $value){
+                    $stmt = $con->prepare("DELETE FROM asset_archive WHERE archieve_id = ?");
+                    $stmt->bind_param('i', $value);
+                    $stmt->execute();
+                    $stmt->close();
+                #$asset_query = $con->query("INSERT INTO assets (asset_barcode, asset_index, asset_department, asset_quantity, asset_description, asset_acquired_date, asset_remarks, asset_count)
+                #                        VALUES ('$asset_barcode', '$asset_index', '$asset_department', '$asset_quantity', '$asset_description', '$asset_acquired_date', '$asset_remarks', '$asset_count')");
+                #$delete_query = $con->query("DELETE FROM asset_archive WHERE archieve_id = '$value'");
+
+                if(!$stmt){
+                    die('QUERY FAILED' . mysqli_error($con));
+                }
+                $_SESSION['toast'] = 'delete_asset';
+                header('Location: index.php?page=inventory');
+            }
+
         }
     }
 
@@ -146,6 +166,7 @@
                     if(!$stmt){
                         die("QUERY FAILED" . mysqli_error($con));
                     }
+                    $_SESSION['toast'] = 'count_asset';
                     header("Location: index.php?page=find_asset");
                 }else if($nums_find_asset >= 1){
                     $stmt = $con->prepare("UPDATE scanned SET asset_count = asset_count+1 WHERE asset_id = ?");
@@ -157,6 +178,8 @@
                     if(!$stmt){
                         die("QUERY FAILED" . mysqli_error($con));
                     }
+                    
+                    $_SESSION['toast'] = 'count_asset';
                     header("Location: index.php?page=find_asset");
                 }
 
@@ -188,6 +211,7 @@
             die("QUERY FAILED". mysqli_error($con));
         }
 
+        $_SESSION['toast'] = 'save_asset';
         header("Location: index.php?page=inventory");
     }
 
