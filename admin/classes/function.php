@@ -1,9 +1,9 @@
 <?php 
     function disposed_asset($asset_id, $select_type){
         global $con;
-        if($select_type != 'Archive'){
+        if($select_type != 'Disposed'){
             foreach ($asset_id as $key => $value) {
-                $stmt = $con->prepare("UPDATE assets SET asset_remarks=? WHERE asset_id = ?");
+                $stmt = $con->prepare("UPDATE assets SET asset_remarks=? WHERE asset_id=?");
                 $stmt->bind_param('si', $select_type, $value);
                 $stmt->execute();
                 $stmt->close();
@@ -15,7 +15,7 @@
             }
             header('Location: index.php?page=inventory');
 
-        }else if($select_type == 'Archive'){
+        }else if($select_type == 'Disposed'){
             foreach($asset_id as $key => $value){
                 $asset_query = $con->query("SELECT * FROM assets WHERE asset_id = '$value'");
                 $row = $asset_query->fetch_array();
@@ -26,12 +26,11 @@
                     $asset_quantity = $row['asset_quantity'];
                     $asset_description = $row['asset_description'];
                     $asset_acquired_date = $row['asset_acquired_date'];
-                    $asset_remarks = $row['asset_remarks'];
                     $asset_count = $row['asset_count'];
 
                 $stmt = $con->prepare("INSERT INTO asset_archive (main_id, asset_barcode,asset_index,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
                                              VALUES (?,?,?,?,?,?,?,?,?)");
-                $stmt->bind_param('isisisssi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_remarks, $asset_count);
+                $stmt->bind_param('isisisssi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $select_type, $asset_count);
                 $stmt->execute();
                 $stmt = $con->prepare("DELETE FROM assets WHERE asset_id = ?");
                 $stmt->bind_param('i', $value);
@@ -70,8 +69,8 @@
                     $asset_count = $row['asset_count'];
 
                     $stmt = $con->prepare("INSERT INTO assets (main_id, asset_barcode,asset_index,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
-                                            VALUES (?,?,?,?,?,?,?,?,?)");
-                    $stmt->bind_param('isisisssi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_remarks, $asset_count);
+                                            VALUES (?,?,?,?,?,?,?,'Not Counted',?)");
+                    $stmt->bind_param('isisissi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_count);
                     $stmt->execute();
                     $stmt = $con->prepare("DELETE FROM asset_archive WHERE archieve_id = ?");
                     $stmt->bind_param('i', $value);
@@ -109,31 +108,25 @@
 
     function scanned_asset($asset_barcode){
         global $con;
-
-        $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_barcode'");
-        if($asset_query->num_rows > 0 ){
-            while($row = $asset_query->fetch_array()){;
-                $asset_id = $row['main_id'];
-            }
             echo"
             <!-- Add Folder Modal -->
             <div class='modal fade show' id='barcodeInput' style='padding-right: 17px; display: block;' aria-modal='true' role='dialog'>
                       <div class='modal-dialog'>
                       <div class='modal-content'>
-                              <div class='modal-header bg-danger'>
+                              <div class='modal-header bg-primary'>
                                   <h4 class='modal-title'>Count Asset</h4>
                                   <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                       <span aria-hidden='true'>&times;</span>
                                   </button>
                               </div>
                               <div class='modal-body'>
-                                <p class='h4'>Are you sure to count the Asset ID ({$asset_id})</p>
+                                <p class='h4'>Are you sure to count the Asset ID ({$asset_barcode})</p>
                               </div>
                               <div class='modal-footer justify-content-between'>
                                   <a type='button' href='index.php?page=find_asset' class='btn btn-default' data-dismiss='modal'>Cancel</a>
                                   <form action='' method='post'>
                                       <input type='text' name='asset_id' value='{$asset_barcode}' hidden>
-                                      <button type='submit' name='count' value='count'  class='btn btn-success' title='Add File'>Count</button>
+                                      <button type='submit' name='count' value='count'  class='btn btn-primary' title='Add File'>Count</button>
                                   </form>
                               </div>
                       </div>
@@ -142,9 +135,6 @@
                       <!-- /.modal-dialog -->
                   </div>
                   <!-- /.modal -->";
-        }else{
-            header("Location: index.php?page=find_asset");
-        }
     }
 
     function count_asset($asset_barcode){

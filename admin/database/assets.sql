@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2023 at 03:10 AM
+-- Generation Time: Sep 20, 2023 at 03:35 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -47,16 +47,13 @@ CREATE TABLE `assets` (
 --
 
 INSERT INTO `assets` (`asset_id`, `main_id`, `asset_barcode`, `asset_index`, `asset_location`, `asset_department`, `asset_quantity`, `asset_description`, `asset_acquired_date`, `asset_remarks`, `asset_new_location`, `asset_count`) VALUES
-(3, 2, '*OETC0435*', 1, 'MAIN BUILDING', 'M20', 1, 'NEC Telephone', '1997-12-31', 'Not Counted', '', 0),
-(4, 3, '*OE000018*', 1, 'MAIN BUILDING', 'M20', 1, 'Prestar Push Cart - Double', '1996-02-29', 'Not Counted', '', 0),
+(4, 3, '*OE000018*', 1, 'MAIN BUILDING', 'M20', 1, 'Prestar Push Cart - Double', '1996-02-29', 'Counted', '', 1),
 (5, 4, '*OE000194*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (6, 5, '*OE000229*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
-(7, 6, '*OE000239*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (8, 7, '*OE000264*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (9, 8, '*OE000277*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (10, 9, '*OE000278*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (11, 10, '*OE000280*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
-(12, 11, '*OE000281*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (13, 12, '*OE000286*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (14, 13, '*OE000287*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
 (15, 14, '*OE000288*', 1, 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0),
@@ -461,11 +458,11 @@ INSERT INTO `assets` (`asset_id`, `main_id`, `asset_barcode`, `asset_index`, `as
 (414, 413, '*OE000811*', 1, 'MAIN BUILDING', 'M20', 1, 'Okamura DT03ZB Supervisory table', '1997-07-19', 'Not Counted', '', 0),
 (415, 414, '*OE000812*', 1, 'MAIN BUILDING', 'M20', 1, 'Okamura DT03ZB Supervisory Table', '1997-07-19', 'Not Counted', '', 0),
 (416, 415, '*OE000818*', 1, 'MAIN BUILDING', 'M20', 1, 'Computer table (24ZE)', '1997-06-06', 'Not Counted', '', 0),
-(417, 416, '*OE001476*', 1, 'MAIN BUILDING', 'M20', 1, 'Clerical Chair - Gray', '1997-12-31', 'Not Counted', '', 0);
-INSERT INTO `assets` (`asset_id`, `main_id`, `asset_barcode`, `asset_index`, `asset_location`, `asset_department`, `asset_quantity`, `asset_description`, `asset_acquired_date`, `asset_remarks`, `asset_new_location`, `asset_count`) VALUES
+(417, 416, '*OE001476*', 1, 'MAIN BUILDING', 'M20', 1, 'Clerical Chair - Gray', '1997-12-31', 'Not Counted', '', 0),
 (418, 417, '*OETC0972*', 1, 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-08-11', 'Not Counted', '', 0),
 (419, 418, '*OETC1267*', 1, 'MAIN BUILDING', 'M20', 1, 'Clerical Chair - Gray', '1997-12-31', 'Not Counted', '', 0),
-(420, 419, '*OETC1268*', 1, 'MAIN BUILDING', 'M20', 1, 'Clerical Chair - Gray', '1997-12-31', 'Not Counted', '', 0),
+(420, 419, '*OETC1268*', 1, 'MAIN BUILDING', 'M20', 1, 'Clerical Chair - Gray', '1997-12-31', 'Not Counted', '', 0);
+INSERT INTO `assets` (`asset_id`, `main_id`, `asset_barcode`, `asset_index`, `asset_location`, `asset_department`, `asset_quantity`, `asset_description`, `asset_acquired_date`, `asset_remarks`, `asset_new_location`, `asset_count`) VALUES
 (421, 420, '*OETC1270*', 1, 'MAIN BUILDING', 'M20', 1, 'NEC Analog Telephone', '1997-12-31', 'Not Counted', '', 0),
 (422, 421, '*OE001015*', 1, 'MAIN BUILDING', 'M20', 1, 'Okamura DT13LF Staff table', '1997-07-19', 'Not Counted', '', 0),
 (423, 422, '*OE000767*', 1, 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawers', '1997-08-11', 'Not Counted', '', 0),
@@ -754,11 +751,13 @@ INSERT INTO `assets` (`asset_id`, `main_id`, `asset_barcode`, `asset_index`, `as
 (706, 705, '*OE007485*', 1, 'MAIN BUILDING', 'M20', 1, '1 UNIT WASHING MACHINE LG WF-S110V TC 11KG', '2018-05-21', 'Not Counted', '', 0),
 (707, 706, '*OETC2107*', 1, 'MAIN BUILDING', 'M20', 1, 'Floor Carpeting of VTM', '1989-08-31', 'Not Counted', '', 0),
 (708, 707, '*OETC2108*', 1, 'MAIN BUILDING', 'M20', 1, 'Carpet installation for NS room', '1990-08-24', 'Not Counted', '', 0),
-(709, 708, '*OETC2109*', 1, 'MAIN BUILDING', 'M20', 1, 'Installation of carpet at sekinos room', '1992-05-14', 'Not Counted', '', 0),
+(709, 708, '*OETC2109*', 1, 'MAIN BUILDING', 'M20', 1, 'Installation of carpet at sekinos room', '1992-05-14', 'Counted', '', 1),
 (710, 709, '*OETC2110*', 1, 'MAIN BUILDING', 'M20', 1, 'Supply and installation of floor carpets', '1997-10-10', 'Not Counted', '', 0),
-(711, 0, '', 0, '', '', 0, '', '0000-00-00', 'Not Counted', '', 0),
-(712, 0, 'asset_barcode', 0, '', 'asset_department', 0, 'asset_description', '0000-00-00', 'Not Counted', '', 0),
-(713, 0, '*OE002450*', 1, '', 'M20', 1, 'Coat Hanger', '1997-12-31', 'Not Counted', '', 0);
+(713, 1, '*OE002450*', 1, '', 'M20', 1, 'Coat Hanger', '1997-12-31', 'Not Counted', '', 0),
+(714, 0, '', 0, '', '', 0, '', '0000-00-00', 'Not Counted', '', 0),
+(716, 0, 'asset_barcode', 0, '', 'asset_department', 0, 'asset_description', '0000-00-00', 'Not Counted', '', 0),
+(718, 2, '*OETC0435*', 1, '', 'M20', 1, 'NEC Telephone', '1997-12-31', 'Counted', '', 2),
+(723, 11, '*OE000281*', 1, '', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Not Counted', '', 0);
 
 -- --------------------------------------------------------
 
@@ -768,6 +767,7 @@ INSERT INTO `assets` (`asset_id`, `main_id`, `asset_barcode`, `asset_index`, `as
 
 CREATE TABLE `asset_archive` (
   `archieve_id` int(11) NOT NULL,
+  `main_id` int(11) NOT NULL,
   `asset_barcode` varchar(255) NOT NULL,
   `asset_index` int(11) NOT NULL,
   `asset_location` varchar(255) NOT NULL,
@@ -780,6 +780,13 @@ CREATE TABLE `asset_archive` (
   `asset_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `asset_archive`
+--
+
+INSERT INTO `asset_archive` (`archieve_id`, `main_id`, `asset_barcode`, `asset_index`, `asset_location`, `asset_department`, `asset_quantity`, `asset_description`, `asset_acquired_date`, `asset_remarks`, `asset_new_location`, `asset_count`) VALUES
+(17, 6, '*OE000239*', 1, '', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 'Disposed', '', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -791,6 +798,13 @@ CREATE TABLE `scanned` (
   `asset_id` int(11) NOT NULL,
   `asset_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `scanned`
+--
+
+INSERT INTO `scanned` (`scan_id`, `asset_id`, `asset_count`) VALUES
+(4, 710, 3);
 
 -- --------------------------------------------------------
 
@@ -813,7 +827,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_email`, `username`, `user_password`, `user_role`) VALUES
-(1, 'Ken', 'Saludes', 'sample@sample.com', 'MsKen', 'RunBTS2022', 'Admin');
+(1, 'Ken', 'Saludes', 'sample@sample.com', 'MsKen', '2cd6d7fcf0511fb32d7fcdcbc5d151a3', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -851,19 +865,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `asset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=714;
+  MODIFY `asset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=724;
 
 --
 -- AUTO_INCREMENT for table `asset_archive`
 --
 ALTER TABLE `asset_archive`
-  MODIFY `archieve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `archieve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `scanned`
 --
 ALTER TABLE `scanned`
-  MODIFY `scan_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `scan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

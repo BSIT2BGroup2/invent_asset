@@ -33,13 +33,42 @@
             echo "Not same password";
             header("Location: index.php?page=user_profile");
         }else{
-            $stmt = $con->prepare("UPDATE users SET user_password = '$new_pass' WHERE user_id = '$user_id'");
+            $stmt = $con->prepare("UPDATE users SET user_password = ? WHERE user_id = ?");
             $stmt->bind_param('si', $new_pass, $user_id);
             $stmt->execute();
             $stmt->close();
             #$update_pass = $con->query("UPDATE users SET user_password = '$new_pass' WHERE user_id = '$user_id'");
             failed_query($stmt);
             header("Location: index.php?page=user_profile");
+        }
+    }
+
+    function change_role($user_id, $select_role){
+        global $con;
+        if($select_role != 'Delete'){
+            foreach($user_id as $key => $value){
+                $stmt = $con->prepare("UPDATE users SET user_role=? WHERE user_id=?");
+                $stmt->bind_param('si', $select_role, $value);
+                $stmt->execute();
+                $stmt->close();
+
+                if(!$stmt){
+                    die('QUERY FAILED' . mysqli_error($con));
+                }
+            }
+            header('Location: index.php?page=users');
+        }else if($select_role == 'Delete'){
+            foreach($user_id as $key => $value){
+                $stmt = $con->prepare("DELETE FROM users WHERE user_id=?");
+                $stmt->bind_param('i', $value);
+                $stmt->execute();
+                $stmt->close();
+
+                if(!$stmt){
+                    die('QUERY FAILED' . mysqli_error($con));
+                }
+            }
+            header('Location: index.php?page=users');
         }
     }
 

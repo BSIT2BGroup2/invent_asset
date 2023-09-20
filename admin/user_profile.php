@@ -11,9 +11,9 @@
     if(isset($_POST['edit_pass'])){
       $user_id = $_POST['user_id'];
       $userName = $_POST['username'];
-      $password = $_POST['oldPassword'];
-      $new_pass = $_POST['newPassword'];
-      $confirm_pass = $_POST['confirmPassword'];
+      $password = md5($_POST['oldPassword']);
+      $new_pass = md5($_POST['newPassword']);
+      $confirm_pass = md5($_POST['confirmPassword']);
 
       edit_pass($user_id, $userName, $password, $new_pass, $confirm_pass);
     }

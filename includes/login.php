@@ -3,7 +3,7 @@
     session_start();
     if(isset($_POST['login'])){
         $user_email = $_POST['user_email'];
-        $user_password = $_POST['user_password'];
+        $user_password = md5($_POST['user_password']);
 
         $user_email = mysqli_escape_string($con, $user_email);
         $user_password = mysqli_escape_string($con, $user_password);
@@ -30,7 +30,10 @@
             $_SESSION['user_role'] = $db_user_role;
             $_SESSION['user_email'] = $db_user_email;
             $_SESSION['username'] = $db_username;
-            header("Location: ../admin");
+            if($db_user_role == 'Admin'){
+                $_SESSION['toast'] = 'userLogin';
+                header("Location: ../admin");
+            }
         }else{
             header("Location: ../index.php");
         }

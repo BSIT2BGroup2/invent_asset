@@ -1,3 +1,12 @@
+<?php 
+    if(isset($_GET['bar'])){
+        $bar = $_GET['bar'];
+    }else{
+        $bar = null;
+    }
+
+?>
+
 <!-- Content Wrapper. Contains page content  -->
 <div class="content-wrapper">
     <!-- Content Header -->
@@ -37,7 +46,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="" method="post">
-                                <table id="example3" class="table table-bordered table-hover ">
+                                <table id="example1" class="table table-bordered table-hover ">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
                                         <select name="select_type" id="" class="form-control" required>
@@ -46,7 +55,6 @@
                                             <option value="Counted">Counted</option>
                                             <option value="Missing">Missing</option>
                                             <option value="Disposed">Disposed</option>
-                                            <option value="Archive">Archive</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
@@ -74,8 +82,10 @@
                                     <tbody>
                                         <?php 
 
-                                        $query = mysqli_query($con, "SELECT * FROM assets");
+                                        $query = mysqli_query($con, "SELECT * FROM assets WHERE asset_barcode LIKE '*$bar%'");
                                         while($row = mysqli_fetch_assoc($query)){
+                                            $date = $row['asset_acquired_date'];
+                                            $date = date('m/d/Y', strtotime($date));
                                             echo"
                                             <tr>
                                                 <td><input type='checkbox' name='asset_id[]' id='asset_id' value='{$row['asset_id']}'></td>
@@ -84,7 +94,7 @@
                                                 <td>{$row['asset_department']}</td>
                                                 <td>{$row['asset_quantity']}</td>
                                                 <td>{$row['asset_description']}</td>
-                                                <td>{$row['asset_acquired_date']}</td>
+                                                <td>{$date}</td>
                                                 <td class='project-state text-center'>
                                                 <span class='badge badge-success'>{$row['asset_remarks']}</span></td>
                                                 <td>{$row['asset_count']}</td>

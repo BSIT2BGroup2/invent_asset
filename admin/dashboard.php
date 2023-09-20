@@ -29,62 +29,91 @@ if(isset($_POST['cancel'])){
                 
                 <!-- Total Books -->
                 <div class="col-3">
-                  <div class="small-box bg-info">
+                  <div class="small-box bg-success">
                     <div class="inner">
                       <h3>85</h3>
 
-                      <p>Total Books</p>
+                      <p>Total Assets</p>
                     </div>
                     <div class="icon">
-                      <i class="nav-icon fas fa-book"></i>
+                      <i class="nav-icon fas fa-solid fa-building"></i>
                     </div>
                   </div>
                 </div>
 
                 <!-- Borrowed Books -->
                 <div class="col-3">
-                  <div class="small-box bg-success">
+                  <div class="small-box bg-primary">
                     <div class="inner">
                       <h3>53</h3>
 
-                      <p>Borrowed Books</p>
+                      <p>Number of  Office Equipments</p>
                     </div>
                     <div class="icon">
-                      <i class="nav-icon fas fa-book"></i>
+                      <i class="nav-icon fas fa-solid fa-chair"></i>
                     </div>
                   </div>
                 </div>
 
                 <!-- Peding Books -->
                 <div class="col-3">
-                  <div class="small-box bg-warning">
+                  <div class="small-box bg-danger">
                     <div class="inner">
                       <h3>32</h3>
 
-                      <p>Pending Books</p>
+                      <p>Number of Machiniries and Equipments</p>
                     </div>
                     <div class="icon">
-                      <i class="nav-icon fas fa-book"></i>
+                      <i class="nav-icon fas fa-solid fa-gears"></i>
                     </div>
                   </div>
                 </div>
                 
                 <!-- Total Documents -->
                 <div class="col-3">
-                  <div class="small-box bg-secondary">
+                  <div class="small-box bg-purple">
                     <div class="inner">
                       <h3>12</h3>
 
-                      <p>Your Uploaded Documents</p>
+                      <p>Number of Transportation Equipments</p>
                     </div>
                     <div class="icon">
-                      <i class="nav-icon fas fa-copy"></i>
+                      <i class="nav-icon fas fa-car"></i>
                     </div>
                   </div>
                 </div>
+
+                <!-- Total Documents -->
+                <div class="col-3">
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <h3>12</h3>
+
+                        <p>Number of Computer Equipment and Software</p>
+                      </div>
+                      <div class="icon">
+                        <i class="nav-icon fas fa-solid fa-desktop"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Total Documents -->
+                  <div class="col-3">
+                    <div class="small-box bg-secondary">
+                      <div class="inner">
+                        <h3>12</h3>
+
+                        <p>Number of Jigs and Tools</p>
+                      </div>
+                      <div class="icon">
+                        <i class="nav-icon fas fa-solid fa-toolbox"></i>
+                      </div>
+                    </div>
+                  </div>
+
               </div>
 
-
+              
 
       </div><!-- /.container-fluid -->
     </section>

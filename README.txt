@@ -5,9 +5,9 @@ Computer Equipment and Software ( *CE* )
 Jigs and Tools	( *JT* )
 
 Remarks:
-	Counted
-	Not Counted
-	Missing
+	Counted (Green)
+	Not Counted (Yellow)
+	Missing (Red)
 	Disposed
 
 NOTE:

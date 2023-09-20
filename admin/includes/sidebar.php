@@ -35,42 +35,47 @@
               <i class="nav-icon fas fa-list"></i>
               <p>
                 List of Assets
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <!-- 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=inventory" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Office Equipments</p>
+                  <p>All Asset</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=inventory&bar=OE" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Machiniries and Equipments</p>
+                  <p>*OE*</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=inventory&bar=ME" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Transportation Equipments</p>
+                  <p>*ME*</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=inventory&bar=TE" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Computer Equipment and Software</p>
+                  <p>*TE*</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="index.php?page=inventory&bar=CE" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Jigs and Tools</p>
+                  <p>*CE*</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?page=inventory&bar=JT" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>*JT*</p>
                 </a>
               </li>
             </ul>
-          -->
           </li>
 
           
@@ -90,6 +95,15 @@
               <i class="nav-icon fas fa-trash"></i>
               <p>
                 Asset Disposal
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="index.php?page=users" class="nav-link nav-archieve">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Users
               </p>
             </a>
           </li>

@@ -63,6 +63,10 @@
 </script>
 <script>
   $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": true,
@@ -107,6 +111,12 @@ $(function() {
   if(!empty($_SESSION['toast'])){
     $toast = $_SESSION['toast'];
     switch($toast){
+      case'userLogin':
+        echo"
+        $(document).ready(function(){
+          toastr.success('Welcome {$user_firstname} {$user_lastname}')
+        });";
+        break;
       case'restore_asset':
         echo"
         $(document).ready(function(){
@@ -116,28 +126,28 @@ $(function() {
       case'disposed_asset':
         echo"
         $(document).ready(function(){
-          toastr.success('The Asset/s is Been Move to Asset Disposal')
+          toastr.success('The Asset/s have been Moved to Asset Disposal')
         });";
         break;
       case'count_asset':
         echo"
         $(document).ready(function(){
-          toastr.success('The Assets is been Count')
+          toastr.success('Asset Counted')
         });";
         break;
       case'save_asset':
         echo"
         $(document).ready(function(){
-          toastr.success('The Asset/s Count is been Saved')
+          toastr.success('The Asset/s Count has been Saved')
         });";
         break;
       case'delete_asset':
         echo"
         $(document).ready(function(){
-          toastr.success('The Asset/s is been Deleted Forever')
+          toastr.success('The Asset/s Deleted Permanently')
         });";
         break;
-    }
-  }unset($_SESSION['toast']);
+    }unset($_SESSION['toast']);
+  }
 ?>
 </script>
