@@ -60,11 +60,21 @@
 <script src="../dist/js/adminlte.js"></script>
 <script>
     $('.nav-<?php echo isset($_GET['page']) ? $_GET['page'] : '' ?>').addClass('active')
+    <?php 
+      if(isset($_GET['page'])){
+        $p = $_GET['page'];
+        if($p == 'inventory'){?>
+          $('.nav-invent').addClass('menu-open')
+          <?php
+        }
+      }
+    ?>
+    $('.nav-<?php echo isset($_GET['bar']) ? $_GET['bar'] : '' ?>').addClass('active')
 </script>
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": false, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

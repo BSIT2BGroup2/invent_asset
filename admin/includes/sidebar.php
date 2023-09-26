@@ -30,7 +30,7 @@
           </li>
           
           <!-- Inventory -->
-          <li class="nav-item">
+          <li class="nav-item nav-invent">
             <a href="index.php?page=inventory" class="nav-link nav-inventory">
               <i class="nav-icon fas fa-list"></i>
               <p>
@@ -40,37 +40,37 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.php?page=inventory" class="nav-link">
+                <a href="index.php?page=inventory&bar=All" class="nav-link nav-All">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Asset</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?page=inventory&bar=OE" class="nav-link">
+                <a href="index.php?page=inventory&bar=OE" class="nav-link nav-OE">
                   <i class="far fa-circle nav-icon"></i>
                   <p>*OE*</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?page=inventory&bar=ME" class="nav-link">
+                <a href="index.php?page=inventory&bar=ME" class="nav-link nav-ME">
                   <i class="far fa-circle nav-icon"></i>
                   <p>*ME*</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?page=inventory&bar=TE" class="nav-link">
+                <a href="index.php?page=inventory&bar=TE" class="nav-link nav-TE">
                   <i class="far fa-circle nav-icon"></i>
                   <p>*TE*</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?page=inventory&bar=CE" class="nav-link">
+                <a href="index.php?page=inventory&bar=CE" class="nav-link nav-CE">
                   <i class="far fa-circle nav-icon"></i>
                   <p>*CE*</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?page=inventory&bar=JT" class="nav-link">
+                <a href="index.php?page=inventory&bar=JT" class="nav-link nav-JT">
                   <i class="far fa-circle nav-icon"></i>
                   <p>*JT*</p>
                 </a>
@@ -89,7 +89,15 @@
             </a>
           </li>
 
-          
+          <li class="nav-item">
+            <a href="index.php?page=dep_value" class="nav-link">
+              <i class="nav-icon fas fa-calculator"></i>
+              <p>
+                Depreciation Value
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="index.php?page=archieve" class="nav-link nav-archieve">
               <i class="nav-icon fas fa-trash"></i>

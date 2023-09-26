@@ -15,3 +15,8 @@ NOTE:
 -- LIST OF ASSETS --
 	^ Must have Edit Delete
 	^ Add Count in table
+
+
+Depreciation Formula:
+
+Dep = (Asset Value - 1) / Year Lenght

@@ -51,6 +51,7 @@ while($row = $profile->fetch_array()){
   <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

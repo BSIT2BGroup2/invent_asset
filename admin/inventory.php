@@ -1,6 +1,9 @@
 <?php 
     if(isset($_GET['bar'])){
         $bar = $_GET['bar'];
+        if($bar == 'All'){
+            $bar = null;
+        }
     }else{
         $bar = null;
     }
@@ -39,7 +42,7 @@
     </div> <!-- /. content header -->
 
     <!-- Main Content -->
-    <section class="context">
+    <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -69,11 +72,11 @@
                                         <tr>
                                             <th></th>
                                             <th>Asset ID</th>
-                                            <th>Index</th>
+                                            <th>Location</th>
                                             <th>Department</th>
                                             <th>Quatity</th>
                                             <th>Description</th>
-                                            <th>Acquired Date</th>
+                                            <th>Acquisition Date</th>
                                             <th>Remarks/Status</th>
                                             <th>Count</th>
                                             <th>Action</th>
@@ -90,7 +93,7 @@
                                             <tr>
                                                 <td><input type='checkbox' name='asset_id[]' id='asset_id' value='{$row['asset_id']}'></td>
                                                 <td>{$row['asset_barcode']}</td>
-                                                <td>{$row['asset_index']}</td>
+                                                <td>{$row['asset_location']}</td>
                                                 <td>{$row['asset_department']}</td>
                                                 <td>{$row['asset_quantity']}</td>
                                                 <td>{$row['asset_description']}</td>
