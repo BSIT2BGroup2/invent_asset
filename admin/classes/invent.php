@@ -27,8 +27,8 @@
                         $column10 = $rowData[9];
             
                         // SQL query to insert data into the database
-                        $sql = $con->query("INSERT INTO assets (main_id, asset_barcode, asset_index, asset_location, asset_department, asset_quantity, asset_description, asset_acquired_date, asset_remarks, asset_new_location) 
-                                            VALUES ('$column1','$column2', '$column3', '$column4', '$column5', '$column6', '$column7', '$column8', 'Not Counted', '$column10')");
+                        $sql = $con->query("INSERT INTO assets (asset_barcode, asset_location, asset_department, asset_quantity, asset_description, asset_acquired_date, acquisition_cost, eul, accumulated_deprecitation, net_book_value, asset_remarks) 
+                                            VALUES ('$column1', '$column2', '$column3', '$column4', '$column5', '$column6', '$column7', '$column8', '$column9', '$column10', 'Not Counted')");
                     }
             
                     if(!$sql){

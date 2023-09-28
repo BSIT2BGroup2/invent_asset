@@ -89,14 +89,15 @@
             </a>
           </li>
 
+          <!--
           <li class="nav-item">
-            <a href="index.php?page=dep_value" class="nav-link">
+            <a href="index.php?page=dep_value" class="nav-link nav-dep_value">
               <i class="nav-icon fas fa-calculator"></i>
               <p>
                 Depreciation Value
               </p>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <a href="index.php?page=archieve" class="nav-link nav-archieve">

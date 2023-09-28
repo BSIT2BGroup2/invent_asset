@@ -19,7 +19,6 @@
             foreach($asset_id as $key => $value){
                 $asset_query = $con->query("SELECT * FROM assets WHERE asset_id = '$value'");
                 $row = $asset_query->fetch_array();
-                    $main_id = $row['main_id'];
                     $asset_barcode = $row['asset_barcode'];
                     $asset_index = $row['asset_index'];
                     $asset_department = $row['asset_department'];
@@ -28,9 +27,9 @@
                     $asset_acquired_date = $row['asset_acquired_date'];
                     $asset_count = $row['asset_count'];
 
-                $stmt = $con->prepare("INSERT INTO asset_archive (main_id, asset_barcode,asset_index,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
-                                             VALUES (?,?,?,?,?,?,?,?,?)");
-                $stmt->bind_param('isisisssi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $select_type, $asset_count);
+                $stmt = $con->prepare("INSERT INTO asset_archive (asset_barcode,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
+                                             VALUES (?,?,?,?,?,?,?)");
+                $stmt->bind_param('ssisssi',$asset_barcode, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $select_type, $asset_count);
                 $stmt->execute();
                 $stmt = $con->prepare("DELETE FROM assets WHERE asset_id = ?");
                 $stmt->bind_param('i', $value);
@@ -68,9 +67,9 @@
                     $asset_remarks = $row['asset_remarks'];
                     $asset_count = $row['asset_count'];
 
-                    $stmt = $con->prepare("INSERT INTO assets (main_id, asset_barcode,asset_index,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
-                                            VALUES (?,?,?,?,?,?,?,'Not Counted',?)");
-                    $stmt->bind_param('isisissi', $main_id, $asset_barcode, $asset_index, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_count);
+                    $stmt = $con->prepare("INSERT INTO assets (asset_barcode,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
+                                            VALUES (?,?,?,?,?,'Not Counted',?)");
+                    $stmt->bind_param('ssissi',$asset_barcode, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_count);
                     $stmt->execute();
                     $stmt = $con->prepare("DELETE FROM asset_archive WHERE archieve_id = ?");
                     $stmt->bind_param('i', $value);
