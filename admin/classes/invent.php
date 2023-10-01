@@ -15,20 +15,22 @@
                         $rowData = str_getcsv($line);
             
                         // Assuming columns are structured as: column1, column2, column3, ...
-                        $column1 = $rowData[0]; 
-                        $column2 = $rowData[1];
-                        $column3 = $rowData[2];
-                        $column4 = $rowData[3];
-                        $column5 = $rowData[4];
-                        $column6 = $rowData[5];
-                        $column7 = $rowData[6];
-                        $column8 = $rowData[7];
-                        $column9 = $rowData[8];
-                        $column10 = $rowData[9];
+                        $asset_barcode = $rowData[0]; 
+                        $asset_location = $rowData[1];
+                        $asset_department = $rowData[2];
+                        $asset_quantity = $rowData[3];
+                        $asset_description = $rowData[4];
+                        $asset_acquired_date = $rowData[5];
+                        $asset_acquired_date = strtotime($asset_acquired_date);
+                        $asset_acquired_date = date("Y/m/d", $asset_acquired_date);
+                        $acquisition_cost = $rowData[6];
+                        $eul = $rowData[7];
+                        $accumulated_deprecitation = $rowData[8];
+                        $net_book_value = $rowData[9];
             
                         // SQL query to insert data into the database
                         $sql = $con->query("INSERT INTO assets (asset_barcode, asset_location, asset_department, asset_quantity, asset_description, asset_acquired_date, acquisition_cost, eul, accumulated_deprecitation, net_book_value, asset_remarks) 
-                                            VALUES ('$column1', '$column2', '$column3', '$column4', '$column5', '$column6', '$column7', '$column8', '$column9', '$column10', 'Not Counted')");
+                                            VALUES ('$asset_barcode', '$asset_location', '$asset_department', '$asset_quantity', '$asset_description', '$asset_acquired_date', '$acquisition_cost', '$eul', '$accumulated_deprecitation', '$net_book_value', 'Not Counted')");
                     }
             
                     if(!$sql){

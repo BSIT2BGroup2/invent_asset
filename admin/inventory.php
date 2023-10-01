@@ -70,7 +70,7 @@
 
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th><input type="checkbox" id="selectAllBoxes"></th>
                                             <th>Asset ID</th>
                                             <th>Location</th>
                                             <th>Department</th>
@@ -79,7 +79,6 @@
                                             <th>Acquisition Date</th>
                                             <th>Remarks/Status</th>
                                             <th>Count</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -89,9 +88,24 @@
                                         while($row = mysqli_fetch_assoc($query)){
                                             $date = $row['asset_acquired_date'];
                                             $date = date('m/d/Y', strtotime($date));
+                                            $remarks = $row['asset_remarks'];
+                                            switch($remarks){
+                                                case 'Not Counted':
+                                                    $badge = 'badge-warning';
+                                                    break;
+                                                case 'Counted':
+                                                    $badge = 'badge-success';
+                                                    break;
+                                                case 'Missing':
+                                                    $badge = 'badge-danger';
+                                                    break;
+                                                default:
+                                                    $badge = '';
+                                                    break;
+                                            }
                                             echo"
                                             <tr>
-                                                <td><input type='checkbox' name='asset_id[]' id='asset_id' value='{$row['asset_id']}'></td>
+                                                <td><input type='checkbox' class='checkBoxes' name='asset_id[]' value='{$row['asset_id']}'></td>
                                                 <td>{$row['asset_barcode']}</td>
                                                 <td>{$row['asset_location']}</td>
                                                 <td>{$row['asset_department']}</td>
@@ -99,10 +113,8 @@
                                                 <td>{$row['asset_description']}</td>
                                                 <td>{$date}</td>
                                                 <td class='project-state text-center'>
-                                                <span class='badge badge-success'>{$row['asset_remarks']}</span></td>
+                                                <span class='badge {$badge}'>{$row['asset_remarks']}</span></td>
                                                 <td>{$row['asset_count']}</td>
-                                                <td>
-                                                <button type='submit' name='borrow' id='editBTN' value='borrow' class='btn btn-warning' title='Borrow Book'><i class='nav-icon fas fa-edit'></i></button></td>
                                             </tr>";
                                         }
                                             ?>
@@ -122,6 +134,28 @@
         $('#deleteBTN').prop('disabled', !$('input[type="checkbox"]:checked').length);
         
   });
+  
+    
+  // Get the master checkbox and all the individual checkboxes
+  const masterCheckbox = document.getElementById('selectAllBoxes');
+  const checkboxes = document.querySelectorAll('.checkBoxes');
+
+ 
+$(document).ready(function() {
+
+$(masterCheckbox).click(function(){
+  if(this.checked){
+    $(checkboxes).each(function(){
+      this.checked = true;
+    });
+  }else{
+    $(checkboxes).each(function(){
+      this.checked = false;
+    });
+  }
+});
+
+});
 </script>
 <?php 
 

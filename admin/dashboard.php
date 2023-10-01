@@ -78,7 +78,7 @@ if(isset($_POST['cancel'])){
                       <p>Number of Machiniries and Equipments</p>
                     </div>
                     <div class="icon">
-                      <i class="nav-icon fas fa-solid fa-gears"></i>
+                      <i class="nav-icon fas fa-solid fa-cogs"></i>
                     </div>
                   </div>
                 </div>

@@ -109,7 +109,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="index.php?page=users" class="nav-link nav-archieve">
+            <a href="index.php?page=users" class="nav-link nav-users">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Users

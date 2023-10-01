@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
-                    <form action="" method="post">
+                    <form action="" method="post" id="scannedForm">
                         <label for="barcodeInput">Scan Barcode:</label>
                         <input type="text" name="barcodeInput" id="barcodeInput" autofocus >
                     </form>
@@ -17,14 +17,35 @@
             </div>
         </div>
     </div> <!-- /. content header -->
+    
+            <!-- Add Folder Modal -->
+            <div class='modal fade' id='barcodeScanned'>
+                      <div class='modal-dialog'>
+                      <div class='modal-content'>
+                              <div class='modal-header bg-primary'>
+                                  <h4 class='modal-title'>Count Asset</h4>
+                                  <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                      <span aria-hidden='true'>&times;</span>
+                                  </button>
+                              </div>
+                              <div class='modal-body'>
+                                <p class='h4'>Are you sure to count the Asset ID (<span id="myText"></span>)</p>
+                              </div>
+                              <div class='modal-footer justify-content-between'>
+                                  <a type='button' href='index.php?page=find_asset' class='btn btn-default' data-dismiss='modal'>Cancel</a>
+                                  <form action='' method='post'>
+                                      <input type='text' name='asset_id' id="asset_id" value='' hidden>
+                                      <button type='submit' name='count' value='count'  class='btn btn-primary' title='Add File'>Count</button>
+                                  </form>
+                              </div>
+                      </div>
+                      <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                  </div>
+                  <!-- /.modal -->
 
     <?php 
-    //When the barcode scanned
-        if(isset($_POST['barcodeInput'])){
-            $asset_barcode = $_POST['barcodeInput'];
-            scanned_asset($asset_barcode);
-        }
-
     //If the asset_id is been count
         if(isset($_POST['count'])){
             $asset_barcode = $_POST['asset_id'];
@@ -57,7 +78,6 @@
                                         <tr>
                                             <th></th>
                                             <th>Asset ID</th>
-                                            <th>Index</th>
                                             <th>Department</th>
                                             <th>Location</th>
                                             <th>Quantity</th>
@@ -76,7 +96,6 @@
                                         echo "<tr>
                                             <td><input type='checkbox' name='asset_id[]' id='asset_id' value='{$asset_id}'></td>
                                             <td>{$fetch_asset['asset_barcode']}</td>
-                                            <td>{$fetch_asset['asset_index']}</td>
                                             <td>{$fetch_asset['asset_department']}</td>
                                             <td>{$fetch_asset['asset_location']}</td>
                                             <td>{$fetch_asset['asset_quantity']}</td>
@@ -100,6 +119,17 @@
         $('#saveBTN').prop('disabled', !$('input[type="checkbox"]:checked').length);
         
   });
+
+        
+  $('#scannedForm').on('submit', function (e) {
+   e.preventDefault();
+   $('#barcodeScanned').modal('show');
+
+   let barcode = document.getElementById("barcodeInput");
+   
+   document.getElementById("myText").innerHTML = barcode.value;
+    document.getElementById("asset_id").value = barcode.value;
+})
 </script>
 <?php 
 //Asset count will be save to the inventory
