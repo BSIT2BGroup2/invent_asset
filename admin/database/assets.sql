@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2023 at 11:15 AM
+-- Generation Time: Oct 03, 2023 at 12:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -49,7 +49,6 @@ CREATE TABLE `assets` (
 
 INSERT INTO `assets` (`asset_id`, `asset_barcode`, `asset_location`, `asset_department`, `asset_quantity`, `asset_description`, `asset_acquired_date`, `acquisition_cost`, `eul`, `accumulated_deprecitation`, `net_book_value`, `asset_remarks`, `asset_count`) VALUES
 (1, '﻿asset_barcode', 'asset_location', 'asset_department', 0, 'asset_description', '1970-01-01', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
-(2, '*OE002450*', 'MAIN BUILDING', 'M20', 1, 'Coat Hanger', '1997-12-31', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (3, '*OETC0435*', 'MAIN BUILDING', 'M20', 1, 'NEC Telephone', '1997-12-31', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (4, '*OE000018*', 'MAIN BUILDING', 'M20', 1, 'Prestar Push Cart - Double', '1996-02-29', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (5, '*OE000194*', 'MAIN BUILDING', 'M20', 1, 'Training Chair with Steel Edge', '1997-12-31', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
@@ -434,9 +433,9 @@ INSERT INTO `assets` (`asset_id`, `asset_barcode`, `asset_location`, `asset_depa
 (384, ' *OE000771* ', 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-08-11', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (385, ' *OE000774* ', 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-07-19', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (386, ' *OE000776* ', 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-07-19', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
-(387, ' *OE000778* ', 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-08-11', 0.00, 0, 0.00, 0.00, 'Not Counted', 0);
+(387, ' *OE000778* ', 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-08-11', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
+(388, ' *OE000779* ', 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-07-19', 0.00, 0, 0.00, 0.00, 'Not Counted', 0);
 INSERT INTO `assets` (`asset_id`, `asset_barcode`, `asset_location`, `asset_department`, `asset_quantity`, `asset_description`, `asset_acquired_date`, `acquisition_cost`, `eul`, `accumulated_deprecitation`, `net_book_value`, `asset_remarks`, `asset_count`) VALUES
-(388, ' *OE000779* ', 'MAIN BUILDING', 'M20', 1, 'FASCON lateral filing cabinet-3 drawer', '1997-07-19', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (389, ' *OE000830* ', 'MAIN BUILDING', 'M20', 1, 'Clerical Chair - Gray', '1997-12-31', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (390, ' *OE000843* ', 'MAIN BUILDING', 'M20', 1, 'Okamura DT03ZB Supervisory table', '1997-07-19', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (391, ' *OE000872* ', 'MAIN BUILDING', 'M20', 1, 'Okamura DT03ZB Managerial table', '1997-07-19', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
@@ -759,7 +758,8 @@ INSERT INTO `assets` (`asset_id`, `asset_barcode`, `asset_location`, `asset_depa
 (708, '*OETC2108*', 'MAIN BUILDING', 'M20', 1, 'Carpet installation for NS room', '1990-08-24', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (709, '*OETC2109*', 'MAIN BUILDING', 'M20', 1, 'Installation of carpet at sekinos room', '1992-05-14', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
 (710, '*OETC2110*', 'MAIN BUILDING', 'M20', 1, 'Supply and installation of floor carpets', '1997-10-10', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
-(711, '', '', '', 0, '', '1970-01-01', 0.00, 0, 0.00, 0.00, 'Not Counted', 0);
+(711, '', '', '', 0, '', '1970-01-01', 0.00, 0, 0.00, 0.00, 'Not Counted', 0),
+(734, '*OE002450*', '', 'M20', 1, 'Coat Hanger', '1997-12-31', 0.00, 0, 0.00, 0.00, 'Not Counted', 0);
 
 -- --------------------------------------------------------
 
@@ -769,16 +769,17 @@ INSERT INTO `assets` (`asset_id`, `asset_barcode`, `asset_location`, `asset_depa
 
 CREATE TABLE `asset_archive` (
   `archieve_id` int(11) NOT NULL,
-  `main_id` int(11) NOT NULL,
   `asset_barcode` varchar(255) NOT NULL,
-  `asset_index` int(11) NOT NULL,
   `asset_location` varchar(255) NOT NULL,
   `asset_department` varchar(255) NOT NULL,
   `asset_quantity` int(11) NOT NULL,
   `asset_description` text NOT NULL,
   `asset_acquired_date` date NOT NULL,
+  `acquisition_cost` double(11,2) NOT NULL,
+  `eul` int(11) NOT NULL,
+  `accumulated_deprecitation` double(11,2) NOT NULL,
+  `net_book_value` double(11,2) NOT NULL,
   `asset_remarks` varchar(255) NOT NULL,
-  `asset_new_location` varchar(255) NOT NULL,
   `asset_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -793,6 +794,13 @@ CREATE TABLE `scanned` (
   `asset_id` int(11) NOT NULL,
   `asset_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `scanned`
+--
+
+INSERT INTO `scanned` (`scan_id`, `asset_id`, `asset_count`) VALUES
+(6, 710, 1);
 
 -- --------------------------------------------------------
 
@@ -853,19 +861,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `asset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=712;
+  MODIFY `asset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=735;
 
 --
 -- AUTO_INCREMENT for table `asset_archive`
 --
 ALTER TABLE `asset_archive`
-  MODIFY `archieve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `archieve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `scanned`
 --
 ALTER TABLE `scanned`
-  MODIFY `scan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `scan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`

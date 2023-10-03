@@ -118,47 +118,36 @@ $(function() {
 
   
 })
-<?php 
-  if(!empty($_SESSION['toast'])){
-    $toast = $_SESSION['toast'];
-    switch($toast){
-      case'userLogin':
+
+$(document).ready(function(){
+  <?php
+    if(!empty($_SESSION['toast'])){
+      if($_SESSION['toast'] == 'userLogin'){
         echo"
-        $(document).ready(function(){
           toastr.success('Welcome {$user_firstname} {$user_lastname}')
-        });";
-        break;
-      case'restore_asset':
+        ";
+      }elseif($_SESSION['toast'] == 'restore_asset'){
         echo"
-        $(document).ready(function(){
           toastr.success('The Asset/s is Succesfully Restored')
-        });";
-        break;
-      case'disposed_asset':
+        ;";
+      }elseif($_SESSION['toast'] == 'disposed_asset'){
         echo"
-        $(document).ready(function(){
           toastr.success('The Asset/s have been Moved to Asset Disposal')
-        });";
-        break;
-      case'count_asset':
+        ";
+      }elseif($_SESSION['toast'] == 'count_asset'){
         echo"
-        $(document).ready(function(){
           toastr.success('Asset Counted')
-        });";
-        break;
-      case'save_asset':
+        ";
+      }elseif($_SESSION['toast'] == 'save_asset'){
         echo"
-        $(document).ready(function(){
           toastr.success('The Asset/s Count has been Saved')
-        });";
-        break;
-      case'delete_asset':
+        ";
+      }elseif($_SESSION['toast'] == 'delete_asset'){
         echo"
-        $(document).ready(function(){
           toastr.success('The Asset/s Deleted Permanently')
-        });";
-        break;
-    }unset($_SESSION['toast']);
-  }
-?>
+        ";
+      }
+    }
+  ?>
+});
 </script>

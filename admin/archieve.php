@@ -45,13 +45,12 @@
                                         <tr>
                                             <th></th>
                                             <th>Asset ID</th>
-                                            <th>Index</th>
+                                            <th>Location</th>
                                             <th>Department</th>
                                             <th>Quatity</th>
                                             <th>Description</th>
                                             <th>Acquired Date</th>
                                             <th>Remarks/Status</th>
-                                            <th>New Location</th>
                                             
                                         </tr>
                                     </thead>
@@ -64,13 +63,12 @@
                                             <tr>
                                                 <td><input type='checkbox' name='archieve_id[]' id='archieve_id' value='{$row['archieve_id']}'></td>
                                                 <td>{$row['asset_barcode']}</td>
-                                                <td>{$row['asset_index']}</td>
+                                                <td>{$row['asset_location']}</td>
                                                 <td>{$row['asset_department']}</td>
                                                 <td>{$row['asset_quantity']}</td>
                                                 <td>{$row['asset_description']}</td>
                                                 <td>{$row['asset_acquired_date']}</td>
                                                 <td>{$row['asset_remarks']}</td>
-                                                <td>{$row['asset_new_location']}</td>
                                             </tr>";
                                         }
                                             ?>

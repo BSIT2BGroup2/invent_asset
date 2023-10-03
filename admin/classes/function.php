@@ -7,7 +7,6 @@
                 $stmt->bind_param('si', $select_type, $value);
                 $stmt->execute();
                 $stmt->close();
-                #$update_query = $con->query("UPDATE assets SET asset_remarks='$select_type' WHERE asset_id = '$value'");
 
                 if(!$stmt){
                     die('QUERY FAILED' . mysqli_error($con));
@@ -20,26 +19,24 @@
                 $asset_query = $con->query("SELECT * FROM assets WHERE asset_id = '$value'");
                 $row = $asset_query->fetch_array();
                     $asset_barcode = $row['asset_barcode'];
-                    $asset_index = $row['asset_index'];
                     $asset_department = $row['asset_department'];
                     $asset_quantity = $row['asset_quantity'];
                     $asset_description = $row['asset_description'];
                     $asset_acquired_date = $row['asset_acquired_date'];
+                    $acquisition_cost = $row['acquisition_cost'];
+                    $eul = $row['eul'];
+                    $accumulated_deprecitation = $row['accumulated_deprecitation'];
+                    $net_book_value = $row['net_book_value'];
                     $asset_count = $row['asset_count'];
 
-                $stmt = $con->prepare("INSERT INTO asset_archive (asset_barcode,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
-                                             VALUES (?,?,?,?,?,?,?)");
-                $stmt->bind_param('ssisssi',$asset_barcode, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $select_type, $asset_count);
+                $stmt = $con->prepare("INSERT INTO asset_archive (asset_barcode,asset_department,asset_quantity,asset_description,asset_acquired_date,acquisition_cost,eul,accumulated_deprecitation,net_book_value,asset_remarks,asset_count)
+                                             VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                $stmt->bind_param('ssissiiiisi',$asset_barcode, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $acquisition_cost, $eul, $accumulated_deprecitation, $net_book_value, $select_type, $asset_count);
                 $stmt->execute();
                 $stmt = $con->prepare("DELETE FROM assets WHERE asset_id = ?");
                 $stmt->bind_param('i', $value);
                 $stmt->execute();
                 $stmt->close();
-    
-                #$archive_query = $con->query("INSERT INTO asset_archive (asset_barcode,asset_index,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
-                                             #VALUES ('$asset_barcode', '$asset_index', '$asset_department', '$asset_quantity', '$asset_description', '$asset_acquired_date', '$asset_remarks', '$asset_count')");
-                
-                #$delete_query = $con->query("DELETE FROM assets WHERE asset_id = '$value'");
     
                 if(!$stmt){
                     die('QUERY FAILED' . mysqli_error($con));
@@ -57,27 +54,26 @@
             foreach($archieve_id as $id => $value){
                 $archive_query = $con->query("SELECT * FROM asset_archive WHERE archieve_id = '$value'");
                 $row = $archive_query->fetch_array();
-                    $main_id = $row['main_id'];
                     $asset_barcode = $row['asset_barcode'];
-                    $asset_index = $row['asset_index'];
+                    $asset_location = $row['asset_location'];
                     $asset_department = $row['asset_department'];
                     $asset_quantity = $row['asset_quantity'];
                     $asset_description = $row['asset_description'];
                     $asset_acquired_date = $row['asset_acquired_date'];
-                    $asset_remarks = $row['asset_remarks'];
+                    $acquisition_cost = $row['acquisition_cost'];
+                    $eul = $row['eul'];
+                    $accumulated_deprecitation = $row['accumulated_deprecitation'];
+                    $net_book_value = $row['net_book_value'];
                     $asset_count = $row['asset_count'];
 
-                    $stmt = $con->prepare("INSERT INTO assets (asset_barcode,asset_department,asset_quantity,asset_description,asset_acquired_date,asset_remarks,asset_count)
-                                            VALUES (?,?,?,?,?,'Not Counted',?)");
-                    $stmt->bind_param('ssissi',$asset_barcode, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date, $asset_count);
+                    $stmt = $con->prepare("INSERT INTO assets (asset_barcode, asset_location, asset_department,asset_quantity,asset_description,asset_acquired_date,acquisition_cost,eul,accumulated_deprecitation,net_book_value,asset_remarks,asset_count)
+                                            VALUES (?,?,?,?,?,?,?,?,?,?,'Not Counted',?)");
+                    $stmt->bind_param('sssissiiiii',$asset_barcode, $asset_location, $asset_department, $asset_quantity, $asset_description, $asset_acquired_date,  $acquisition_cost, $eul, $accumulated_deprecitation, $net_book_value, $asset_count);
                     $stmt->execute();
                     $stmt = $con->prepare("DELETE FROM asset_archive WHERE archieve_id = ?");
                     $stmt->bind_param('i', $value);
                     $stmt->execute();
                     $stmt->close();
-                #$asset_query = $con->query("INSERT INTO assets (asset_barcode, asset_index, asset_department, asset_quantity, asset_description, asset_acquired_date, asset_remarks, asset_count)
-                #                        VALUES ('$asset_barcode', '$asset_index', '$asset_department', '$asset_quantity', '$asset_description', '$asset_acquired_date', '$asset_remarks', '$asset_count')");
-                #$delete_query = $con->query("DELETE FROM asset_archive WHERE archieve_id = '$value'");
 
                 if(!$stmt){
                     die('QUERY FAILED' . mysqli_error($con));
@@ -91,9 +87,6 @@
                     $stmt->bind_param('i', $value);
                     $stmt->execute();
                     $stmt->close();
-                #$asset_query = $con->query("INSERT INTO assets (asset_barcode, asset_index, asset_department, asset_quantity, asset_description, asset_acquired_date, asset_remarks, asset_count)
-                #                        VALUES ('$asset_barcode', '$asset_index', '$asset_department', '$asset_quantity', '$asset_description', '$asset_acquired_date', '$asset_remarks', '$asset_count')");
-                #$delete_query = $con->query("DELETE FROM asset_archive WHERE archieve_id = '$value'");
 
                 if(!$stmt){
                     die('QUERY FAILED' . mysqli_error($con));
@@ -123,7 +116,6 @@
                         $stmt->bind_param('i', $asset_id);
                         $stmt->execute();
                         $stmt->close();
-                        #$insert_query = $con->query("INSERT INTO scanned (asset_id,asset_count) VALUES ('$asset_id',asset_count+1)");
                     
                         if(!$stmt){
                             die("QUERY FAILED" . mysqli_error($con));
@@ -135,7 +127,6 @@
                         $stmt->bind_param('i', $asset_id);
                         $stmt->execute();
                         $stmt->close();
-                        #$insert_query = $con->query("UPDATE scanned SET asset_count = asset_count+1 WHERE asset_id = '$asset_id'");
                     
                         if(!$stmt){
                             die("QUERY FAILED" . mysqli_error($con));
@@ -167,9 +158,6 @@
             $stmt->bind_param('i', $scan_id);
             $stmt->execute();
             $stmt->close();
-
-            #$asset_query = $con->query("UPDATE assets SET asset_count=asset_count+'$asset_count', asset_remarks='Counted' WHERE asset_id = '$value'");
-            #$delete_query = $con->query("DELETE FROM scanned where scan_id = '$scan_id'");
         }
         if(!$stmt){
             die("QUERY FAILED". mysqli_error($con));
