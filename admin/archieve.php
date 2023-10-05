@@ -43,7 +43,7 @@
                                 </div>
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th><input type="checkbox" id="selectAllBoxes"></th>
                                             <th>Asset ID</th>
                                             <th>Location</th>
                                             <th>Department</th>
@@ -61,7 +61,7 @@
                                         while($row = mysqli_fetch_assoc($query)){
                                             echo"
                                             <tr>
-                                                <td><input type='checkbox' name='archieve_id[]' id='archieve_id' value='{$row['archieve_id']}'></td>
+                                                <td><input type='checkbox'  class='checkBoxes' name='archieve_id[]' id='archieve_id' value='{$row['archieve_id']}'></td>
                                                 <td>{$row['asset_barcode']}</td>
                                                 <td>{$row['asset_location']}</td>
                                                 <td>{$row['asset_department']}</td>

@@ -3,6 +3,7 @@
         global $con;
         if($select_type != 'Disposed'){
             foreach ($asset_id as $key => $value) {
+                
                 $stmt = $con->prepare("UPDATE assets SET asset_remarks=? WHERE asset_id=?");
                 $stmt->bind_param('si', $select_type, $value);
                 $stmt->execute();
@@ -11,7 +12,9 @@
                 if(!$stmt){
                     die('QUERY FAILED' . mysqli_error($con));
                 }
+                
             }
+            $_SESSION['toast'] = 'changeRemarks';
             header('Location: index.php?page=inventory');
 
         }else if($select_type == 'Disposed'){
@@ -136,7 +139,8 @@
                         header("Location: index.php?page=find_asset");
                     }
                 }else{
-                    echo "The Count will be exceed to the Asset Quantity";
+                    $_SESSION['toast'] = 'quantityOverCount';
+                    header("Location: index.php?page=find_asset");
                 }
             }
         } 

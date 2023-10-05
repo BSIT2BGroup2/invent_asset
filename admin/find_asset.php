@@ -7,11 +7,11 @@
                 <div class="col-sm-4">
                     <h1 class="m-0">Find Assets</h1>
                 </div>
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-3">
                     <form action="" method="post" id="scannedForm">
                         <label for="barcodeInput">Scan Barcode:</label>
-                        <input type="text" name="barcodeInput" id="barcodeInput" autofocus >
+                        <input type="text" name="barcodeInput" id="barcodeInput" class="form-control" autofocus>
                     </form>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                                     </div>
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th><input type="checkbox" id="selectAllBoxes"></th>
                                             <th>Asset ID</th>
                                             <th>Department</th>
                                             <th>Location</th>
@@ -94,7 +94,7 @@
                                                 $asset_query = $con->query("SELECT * FROM assets WHERE asset_id = '$asset_id'");
                                                 $fetch_asset = $asset_query->fetch_array();
                                         echo "<tr>
-                                            <td><input type='checkbox' name='asset_id[]' id='asset_id' value='{$asset_id}'></td>
+                                            <td><input type='checkbox'  class='checkBoxes' name='asset_id[]' id='asset_id' value='{$asset_id}'></td>
                                             <td>{$fetch_asset['asset_barcode']}</td>
                                             <td>{$fetch_asset['asset_department']}</td>
                                             <td>{$fetch_asset['asset_location']}</td>

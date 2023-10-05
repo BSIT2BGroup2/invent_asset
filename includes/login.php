@@ -35,6 +35,7 @@
                 header("Location: ../admin");
             }
         }else{
+            $_SESSION['toast'] = 'wrongEmail';
             header("Location: ../index.php");
         }
     

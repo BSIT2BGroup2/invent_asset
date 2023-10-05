@@ -70,12 +70,42 @@
       }
     ?>
     $('.nav-<?php echo isset($_GET['bar']) ? $_GET['bar'] : '' ?>').addClass('active')
+    
+    
+  // Get the master checkbox and all the individual checkboxes
+  const masterCheckbox = document.getElementById('selectAllBoxes');
+  const checkboxes = document.querySelectorAll('.checkBoxes');
+
+ 
+
+        // Add an event listener to each checkbox
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", function () {
+                // Check if any individual checkbox is unchecked
+                const isAnyUnchecked = [...checkboxes].some(function (checkbox) {
+                    return !checkbox.checked;
+                });
+
+                // Update the "Toggle All" checkbox accordingly
+                masterCheckbox.checked = !isAnyUnchecked;
+            });
+        });
+
+        // Add an event listener to the "Toggle All" checkbox
+        masterCheckbox.addEventListener("change", function () {
+            const isChecked = masterCheckbox.checked;
+
+            // Loop through all checkboxes and set their state to match the "Toggle All" checkbox
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = isChecked;
+            });
+        });
 
 </script>
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": false, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
@@ -126,6 +156,10 @@ $(document).ready(function(){
         echo"
           toastr.success('Welcome {$user_firstname} {$user_lastname}')
         ";
+      }elseif($_SESSION['toast'] == 'changeRemarks'){
+        echo"
+          toastr.success('The Asset/s Remarks is been Updated')
+        ;";
       }elseif($_SESSION['toast'] == 'restore_asset'){
         echo"
           toastr.success('The Asset/s is Succesfully Restored')
@@ -133,6 +167,10 @@ $(document).ready(function(){
       }elseif($_SESSION['toast'] == 'disposed_asset'){
         echo"
           toastr.success('The Asset/s have been Moved to Asset Disposal')
+        ";
+      }elseif($_SESSION['toast'] == 'quantityOverCount'){
+        echo"
+          toastr.info('The Count will be Greater Than Quantity. The Count will not process')
         ";
       }elseif($_SESSION['toast'] == 'count_asset'){
         echo"

@@ -105,7 +105,7 @@
                                             }
                                             echo"
                                             <tr>
-                                                <td><input type='checkbox' class='checkBoxes' name='asset_id[]' value='{$row['asset_id']}'></td>
+                                                <td class='text-center'><input type='checkbox' class='checkBoxes' name='asset_id[]' value='{$row['asset_id']}'></td>
                                                 <td>{$row['asset_barcode']}</td>
                                                 <td>{$row['asset_location']}</td>
                                                 <td>{$row['asset_department']}</td>
@@ -135,27 +135,6 @@
         
   });
   
-    
-  // Get the master checkbox and all the individual checkboxes
-  const masterCheckbox = document.getElementById('selectAllBoxes');
-  const checkboxes = document.querySelectorAll('.checkBoxes');
-
- 
-$(document).ready(function() {
-
-$(masterCheckbox).click(function(){
-  if(this.checked){
-    $(checkboxes).each(function(){
-      this.checked = true;
-    });
-  }else{
-    $(checkboxes).each(function(){
-      this.checked = false;
-    });
-  }
-});
-
-});
 </script>
 <?php 
 
