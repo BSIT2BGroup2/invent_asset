@@ -110,32 +110,38 @@
             while($row = $asset_query->fetch_array()){
                 $asset_id = $row['asset_id'];
                 $asset_quantity = $row['asset_quantity'];
+                $asset_count = $row['asset_count'];
                 $find_asset = $con->query("SELECT * FROM scanned WHERE asset_id = '$asset_id'");
                 $row_count = $find_asset->fetch_array();
                 $nums_find_asset = mysqli_num_rows($find_asset);
-                if($asset_quantity != $row_count['asset_count']){
-                    if($nums_find_asset == 0){
-                        $stmt = $con->prepare("INSERT INTO scanned (asset_id,asset_count) VALUES (?,asset_count+1)");
-                        $stmt->bind_param('i', $asset_id);
-                        $stmt->execute();
-                        $stmt->close();
-                    
-                        if(!$stmt){
-                            die("QUERY FAILED" . mysqli_error($con));
-                        }
-                        $_SESSION['toast'] = 'count_asset';
-                        header("Location: index.php?page=find_asset");
-                    }else if($nums_find_asset >= 1){
-                        $stmt = $con->prepare("UPDATE scanned SET asset_count = asset_count+1 WHERE asset_id = ?");
-                        $stmt->bind_param('i', $asset_id);
-                        $stmt->execute();
-                        $stmt->close();
-                    
-                        if(!$stmt){
-                            die("QUERY FAILED" . mysqli_error($con));
-                        }
+                if($asset_quantity != $asset_count){
+                    if($asset_quantity != $row_count['asset_count']){
+                        if($nums_find_asset == 0){
+                            $stmt = $con->prepare("INSERT INTO scanned (asset_id,asset_count) VALUES (?,asset_count+1)");
+                            $stmt->bind_param('i', $asset_id);
+                            $stmt->execute();
+                            $stmt->close();
                         
-                        $_SESSION['toast'] = 'count_asset';
+                            if(!$stmt){
+                                die("QUERY FAILED" . mysqli_error($con));
+                            }
+                            $_SESSION['toast'] = 'count_asset';
+                            header("Location: index.php?page=find_asset");
+                        }else if($nums_find_asset >= 1){
+                            $stmt = $con->prepare("UPDATE scanned SET asset_count = asset_count+1 WHERE asset_id = ?");
+                            $stmt->bind_param('i', $asset_id);
+                            $stmt->execute();
+                            $stmt->close();
+                        
+                            if(!$stmt){
+                                die("QUERY FAILED" . mysqli_error($con));
+                            }
+                            
+                            $_SESSION['toast'] = 'count_asset';
+                            header("Location: index.php?page=find_asset");
+                        }
+                    }else{
+                        $_SESSION['toast'] = 'quantityOverCount';
                         header("Location: index.php?page=find_asset");
                     }
                 }else{

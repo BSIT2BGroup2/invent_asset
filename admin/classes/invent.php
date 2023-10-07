@@ -36,6 +36,7 @@
                     if(!$sql){
                         die("QUERY FAILED" . mysqli_error($con));
                     }
+                    $_SESSION['toast'] = 'fileInserted';
                     header("Location: ../index.php?page=inventory");
                 } else {
                     echo "Failed to read Excel file.";

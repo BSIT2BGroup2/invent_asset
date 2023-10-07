@@ -32,9 +32,9 @@ if(isset($_POST['cancel'])){
                   <div class="small-box bg-success">
                     <div class="inner">
                       <?php 
-                      $total_asset = $con->query("SELECT * FROM assets");
-                      $total_asset = mysqli_num_rows($total_asset);
-                      echo "<h3>{$total_asset}</h3>";
+                      $total_asset = $con->query("SELECT COUNT(*) AS asset_total FROM assets");
+                      $total_asset = $total_asset->fetch_array();
+                      echo "<h3>{$total_asset['asset_total']}</h3>";
                       
                       ?>
                       
@@ -161,9 +161,10 @@ if(isset($_POST['cancel'])){
                       <?php 
                         $percent_OE = $con->query("SELECT * FROM assets WHERE asset_barcode LIKE '*OE%' AND asset_remarks = 'Counted'");
                         $percent_OE = mysqli_num_rows($percent_OE);
-                        $OE_percentage_count = ($percent_OE / $total_asset_OE) * 100;
-                        $OE_percentage_count = round($OE_percentage_count,2);
-                      
+                        if($percent_OE != 0){
+                          $OE_percentage_count = ($percent_OE / $total_asset_OE) * 100;
+                          $OE_percentage_count = round($OE_percentage_count,2);
+                        }
                       
                       ?>
                       <script type="text/javascript">

@@ -151,36 +151,40 @@ $(function() {
 
 $(document).ready(function(){
   <?php
-    if(!empty($_SESSION['toast'])){
+    if($_SESSION['toast'] != null){
       if($_SESSION['toast'] == 'userLogin'){
         echo"
           toastr.success('Welcome {$user_firstname} {$user_lastname}')
         ";
-      }elseif($_SESSION['toast'] == 'changeRemarks'){
+      }if($_SESSION['toast'] == 'fileInserted'){
+        echo"
+          toastr.success('The Excel File is Inserted into Database')
+        ;";
+      }if($_SESSION['toast'] == 'changeRemarks'){
         echo"
           toastr.success('The Asset/s Remarks is been Updated')
         ;";
-      }elseif($_SESSION['toast'] == 'restore_asset'){
+      }if($_SESSION['toast'] == 'restore_asset'){
         echo"
           toastr.success('The Asset/s is Succesfully Restored')
         ;";
-      }elseif($_SESSION['toast'] == 'disposed_asset'){
+      }if($_SESSION['toast'] == 'disposed_asset'){
         echo"
           toastr.success('The Asset/s have been Moved to Asset Disposal')
         ";
-      }elseif($_SESSION['toast'] == 'quantityOverCount'){
+      }if($_SESSION['toast'] == 'quantityOverCount'){
         echo"
-          toastr.info('The Count will be Greater Than Quantity. The Count will not process')
+          toastr.info('The Count is not equal to quantity recorded')
         ";
-      }elseif($_SESSION['toast'] == 'count_asset'){
+      }if($_SESSION['toast'] == 'count_asset'){
         echo"
           toastr.success('Asset Counted')
         ";
-      }elseif($_SESSION['toast'] == 'save_asset'){
+      }if($_SESSION['toast'] == 'save_asset'){
         echo"
           toastr.success('The Asset/s Count has been Saved')
         ";
-      }elseif($_SESSION['toast'] == 'delete_asset'){
+      }if($_SESSION['toast'] == 'delete_asset'){
         echo"
           toastr.success('The Asset/s Deleted Permanently')
         ";
