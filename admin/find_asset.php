@@ -92,7 +92,7 @@
                                             if(mysqli_num_rows($scan_query) != 0){
                                             while($row = $scan_query->fetch_array()){
                                                 $asset_id = $row['asset_id'];
-                                                $asset_query = $con->query("SELECT * FROM assets WHERE asset_id = '$asset_id'");
+                                                $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_id'");
                                                 $fetch_asset = $asset_query->fetch_array();
                                         echo "<tr>
                                             <td><input type='checkbox'  class='checkBoxes' name='asset_id[]' id='asset_id' value='{$asset_id}'></td>

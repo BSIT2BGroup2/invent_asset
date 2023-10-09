@@ -100,7 +100,30 @@
 
         }
     }
+/*
+    function count_asset_1($asset_barcode){
+        global $con;
 
+        $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_barcode'");
+        if($asset_query->num_rows > 0){
+            while($row = $asset_query->fetch_assoc()){
+                $asset_id = $row['asset_barcode'];
+                $asset_quantity = $row['asset_quantity'];
+                $asset_count = $row['asset_count'];
+                $find_asset = $con->query("SELECT * FROM scannded WHERE asset_id = '$asset_id'");
+                $row_count = $find_asset->fetch_assoc();
+                $nums_find_asset = mysqli_num_rows($find_asset);
+                if($asset_quantity != $asset_count){
+                    if($asset_quantity != $row_count['asset_count']){
+                        if($nums_find_asset == 0){
+                            $stmt = $con->prepare("INSERT INTO scanned (asset_id, asset_count) VALUES (?, asset_count+1)");
+                            $stmt->bind_param('s', asset)
+                        }
+                    }
+                }
+            }
+        }
+    }8*/
 
     function count_asset($asset_barcode){
         global $con;
@@ -108,7 +131,7 @@
         $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_barcode'");
         if($asset_query->num_rows > 0 ){
             while($row = $asset_query->fetch_array()){
-                $asset_id = $row['asset_id'];
+                $asset_id = $row['asset_barcode'];
                 $asset_quantity = $row['asset_quantity'];
                 $asset_count = $row['asset_count'];
                 $find_asset = $con->query("SELECT * FROM scanned WHERE asset_id = '$asset_id'");
@@ -118,7 +141,7 @@
                     if($asset_quantity != $row_count['asset_count']){
                         if($nums_find_asset == 0){
                             $stmt = $con->prepare("INSERT INTO scanned (asset_id,asset_count) VALUES (?,asset_count+1)");
-                            $stmt->bind_param('i', $asset_id);
+                            $stmt->bind_param('s', $asset_id);
                             $stmt->execute();
                             $stmt->close();
                         
@@ -129,7 +152,7 @@
                             header("Location: index.php?page=find_asset");
                         }else if($nums_find_asset >= 1){
                             $stmt = $con->prepare("UPDATE scanned SET asset_count = asset_count+1 WHERE asset_id = ?");
-                            $stmt->bind_param('i', $asset_id);
+                            $stmt->bind_param('s', $asset_id);
                             $stmt->execute();
                             $stmt->close();
                         
@@ -161,8 +184,8 @@
             $asset_count = $row['asset_count'];
             $scan_id = $row['scan_id'];
 
-            $stmt = $con->prepare("UPDATE assets SET asset_count=asset_count+?, asset_remarks='Counted' WHERE asset_id = ?");
-            $stmt->bind_param('ii', $asset_count, $value);
+            $stmt = $con->prepare("UPDATE assets SET asset_count=asset_count+?, asset_remarks='Counted' WHERE asset_barcode = ?");
+            $stmt->bind_param('is', $asset_count, $value);
             $stmt->execute();
             $stmt = $con->prepare("DELETE FROM scanned where scan_id = ?");
             $stmt->bind_param('i', $scan_id);
