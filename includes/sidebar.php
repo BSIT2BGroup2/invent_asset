@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index.php?page=dashboard" class="brand-link">
-      <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light text-center">Assets Inventory</span>
     </a>
 
@@ -11,10 +11,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+          <img src="dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="index.php?page=user_profile" class="d-block nav-user_profile"><?php echo $user_firstname . " " . $user_lastname ?></a>
+          <a href="#" class="d-block nav-user_profile">ADMIN</a>
         </div>
       </div>
 
@@ -108,6 +108,7 @@
             </a>
           </li>
 
+          <!--
           <li class="nav-item">
             <a href="index.php?page=users" class="nav-link nav-users">
               <i class="nav-icon fas fa-users"></i>
@@ -115,18 +116,18 @@
                 Users
               </p>
             </a>
-          </li>
+          </li> -->
 
           
           <li class="nav-header"></li>
 
-          <!-- Log Out -->
+          <!-- Log Out 
           <li class="nav-item">
             <a href="#" class="nav-link" data-toggle="modal" data-target="#logout">
               <i class="nav-icon fa fa-solid fa-power-off"></i>
               <p>Log Out</p>
             </a>
-          </li>
+          </li>-->
           
         </ul>
       </nav>
