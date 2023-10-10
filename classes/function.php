@@ -129,7 +129,8 @@
         global $con;
         
         $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_barcode'");
-        if($asset_query->num_rows > 0 ){
+        $num_rows = mysqli_num_rows($asset_query);
+        if($num_rows > 0 ){
             while($row = $asset_query->fetch_array()){
                 $asset_id = $row['asset_barcode'];
                 $asset_quantity = $row['asset_quantity'];
@@ -173,6 +174,8 @@
                 }
             }
         } 
+        $_SESSION['toast'] = 'noAssetFound';
+        header("Location: index.php?page=find_asset");
     }
 
     function save_asset($asset_id){

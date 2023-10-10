@@ -88,8 +88,7 @@
                                     </thead>
                                     <tbody>
                                         <?php  
-                                            $scan_query = $con->query("SELECT *  FROM scanned GROUP BY asset_id");
-                                            if(mysqli_num_rows($scan_query) != 0){
+                                            $scan_query = $con->query("SELECT *  FROM scanned");
                                             while($row = $scan_query->fetch_array()){
                                                 $asset_id = $row['asset_id'];
                                                 $asset_query = $con->query("SELECT * FROM assets WHERE asset_barcode = '$asset_id'");
@@ -104,7 +103,7 @@
                                             <td>{$fetch_asset['asset_acquired_date']}</td>
                                             <td>{$row['asset_count']}</td>
                                         </tr> ";
-                                        }}?>
+                                        }?>
                                     </tbody>
                                 </table>
                             </form>

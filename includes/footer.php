@@ -176,6 +176,10 @@ $(document).ready(function(){
         echo"
           toastr.info('The Count is not equal to quantity recorded')
         ";
+      }if($_SESSION['toast'] == 'noAssetFound'){
+        echo"
+          toastr.warning('No Asset ID Found')
+        ";
       }if($_SESSION['toast'] == 'count_asset'){
         echo"
           toastr.success('Asset Counted')
