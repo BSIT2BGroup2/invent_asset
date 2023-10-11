@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="excel" id="excel" class="custom-file-input" accept=".xlsx, .csv">
+                                    <input type="file" name="excel" id="excel" class="custom-file-input" accept=".xlsx" required>
                                     <label class="custom-file-label" for="exampleInputFile">Insert Excel File</label>
                                 </div>
                                 <div class="input-group-append">
