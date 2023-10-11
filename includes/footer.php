@@ -105,7 +105,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": true, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
@@ -151,12 +151,8 @@ $(function() {
 
 $(document).ready(function(){
   <?php
-    if($_SESSION['toast'] != null){
-      if($_SESSION['toast'] == 'userLogin'){
-        echo"
-          toastr.success('Welcome {$user_firstname} {$user_lastname}')
-        ";
-      }if($_SESSION['toast'] == 'fileInserted'){
+    if(!empty($_SESSION['toast'])){
+      if($_SESSION['toast'] == 'fileInserted'){
         echo"
           toastr.success('The Excel File is Inserted into Database')
         ;";
