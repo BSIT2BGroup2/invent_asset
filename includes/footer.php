@@ -100,7 +100,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": false,
+      "responsive": true, "lengthChange": true, "autoWidth": false,"pageLength":100,
       "buttons": ["copy", "csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
@@ -111,6 +111,7 @@
       "info": true,
       "autoWidth": true,
       "responsive": true,
+      "pageLength":100,
     });
     $('#example3').DataTable({
       "paging": true,
@@ -120,6 +121,7 @@
       "info": true,
       "autoWidth": true,
       "responsive": true,
+      "pageLength":100,
     });
   });
   
