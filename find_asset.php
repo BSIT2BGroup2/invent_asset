@@ -95,13 +95,13 @@
                                                 $fetch_asset = $asset_query->fetch_array();
                                         echo "<tr>
                                             <td><input type='checkbox'  class='checkBoxes' name='asset_id[]' id='asset_id' value='{$asset_id}'></td>
-                                            <td>{$fetch_asset['asset_barcode']}</td>
-                                            <td>{$fetch_asset['asset_department']}</td>
-                                            <td>{$fetch_asset['asset_location']}</td>
-                                            <td>{$fetch_asset['asset_quantity']}</td>
-                                            <td>{$fetch_asset['asset_description']}</td>
-                                            <td>{$fetch_asset['asset_acquired_date']}</td>
-                                            <td>{$row['asset_count']}</td>
+                                            <td>".$fetch_asset['asset_barcode']."</td>
+                                            <td>".$fetch_asset['asset_department']."</td>
+                                            <td>".$fetch_asset['asset_location']."</td>
+                                            <td>".$fetch_asset['asset_quantity']."</td>
+                                            <td>".$fetch_asset['asset_description']."</td>
+                                            <td>".$fetch_asset['asset_acquired_date']."</td>
+                                            <td>".$row['asset_count']."</td>
                                         </tr> ";
                                         }?>
                                     </tbody>

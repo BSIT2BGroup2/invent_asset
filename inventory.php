@@ -106,15 +106,15 @@
                                             echo"
                                             <tr>
                                                 <td class='text-center'><input type='checkbox' class='checkBoxes' name='asset_id[]' value='{$row['asset_id']}'></td>
-                                                <td>{$row['asset_barcode']}</td>
-                                                <td>{$row['asset_location']}</td>
-                                                <td>{$row['asset_department']}</td>
-                                                <td>{$row['asset_quantity']}</td>
-                                                <td>{$row['asset_description']}</td>
-                                                <td>{$date}</td>
+                                                <td>".$row['asset_barcode']."</td>
+                                                <td>".$row['asset_location']."</td>
+                                                <td>".$row['asset_department']."</td>
+                                                <td>".$row['asset_quantity']."</td>
+                                                <td>".$row['asset_description']."</td>
+                                                <td>".$date."</td>
                                                 <td class='project-state text-center'>
-                                                <span class='badge {$badge}'>{$row['asset_remarks']}</span></td>
-                                                <td>{$row['asset_count']}</td>
+                                                <span class='badge ".$badge."'>".$row['asset_remarks']."</span></td>
+                                                <td>".$row['asset_count']."</td>
                                             </tr>";
                                         }
                                             ?>
