@@ -4,6 +4,27 @@
         if($bar == 'All'){
             $bar = null;
         }
+
+        switch($bar){
+            case'OE':
+                $barText = '(Office Equipment)';
+                break;
+            case'ME':
+                $barText = '(Machiniries and Equipments)';
+                break;
+            case'TE':
+                $barText = '(Transportation Equipments)';
+                break;
+            case'CE':
+                $barText = '(Computer Equipment and Software)';
+                break;
+            case'JT':
+                $barText = '(Jigs and Tools)';
+                break;
+            default:
+                $barText = '';
+                break;
+            }
     }else{
         $bar = null;
     }
@@ -16,10 +37,10 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-4">
-                    <h1 class="m-0">List of Assets</h1>
+                <div class="col-sm-6">
+                    <h1 class="m-0">List of Assets <?php echo $barText; ?></h1>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <div id="search-results"></div>
                 </div>
                 <div class="col-sm-4">
